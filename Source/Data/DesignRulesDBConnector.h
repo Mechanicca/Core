@@ -5,8 +5,8 @@
  *      Author: martin
  */
 
-#ifndef SOURCE_CORE_DATA_DATA_DESIGNRULESDBCONNECTOR_H_
-#define SOURCE_CORE_DATA_DATA_DESIGNRULESDBCONNECTOR_H_
+#ifndef CORE_DATA_DESIGNRULESDBCONNECTOR_H_
+#define CORE_DATA_DESIGNRULESDBCONNECTOR_H_
 
 /* Standard library inclusions */
 #include <memory>
@@ -109,4 +109,4 @@ namespace Core
 
 } /* namespace Base */
 
-#endif /* SOURCE_CORE_DATA_DATA_DESIGNRULESDBCONNECTOR_H_ */
+#endif /* CORE_DATA_DESIGNRULESDBCONNECTOR_H_ */

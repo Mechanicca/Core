@@ -5,8 +5,8 @@
  *      Author: martin
  */
 
-#ifndef SOURCE_CORE_PARAMETER_H_
-#define SOURCE_CORE_PARAMETER_H_
+#ifndef CORE_PARAMETER_PARAMETER_H_
+#define CORE_PARAMETER_PARAMETER_H_
 
 /* Standard library inclusions */
 #include <limits>
@@ -26,6 +26,9 @@
 /* Project specific inclusions */
 #include "Parameter/IParameter.h"
 #include "Parameter/IParameterTagCollection.h"
+#include "Parameter/Exception.h"
+#include "Parameter/ParameterIdentificationGenerator.h"
+#include "Data/DesignRulesDBConnector.h"
 
 /* Shared library support */
 #include "Core_Export.h"
@@ -37,11 +40,6 @@
 	#define CORE_EXPORT
 	#define CORE_NO_EXPORT
 #endif
-
-/* Project specific inclusions */
-#include "Data/DesignRulesDBConnector.h"
-#include "Parameter/Exception.h"
-#include "Parameter/Parameter_IdentificationGenerator.h"
 
 using namespace boost::units;
 
@@ -530,4 +528,4 @@ namespace Core
 		}
 	}
 }
-#endif /* SOURCE_CORE_PARAMETER_H_ */
+#endif /* CORE_PARAMETER_PARAMETER_H_ */
