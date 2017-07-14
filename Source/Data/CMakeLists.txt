@@ -1,5 +1,6 @@
 target_sources( ${PROJECT_NAME}
-	PRIVATE
-		"${CMAKE_CURRENT_LIST_DIR}/DesignRulesDBConnector.h"
+    PUBLIC
+        "${CMAKE_CURRENT_LIST_DIR}/DesignRulesDBConnector.h"
+	PRIVATE		
 		"${CMAKE_CURRENT_LIST_DIR}/DesignRulesDBConnector.cpp"
 )

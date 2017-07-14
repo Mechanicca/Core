@@ -1,3 +1,7 @@
+project( SQLiteCpp )
+
+add_library( ${PROJECT_NAME} STATIC "" )
+
 target_sources( ${PROJECT_NAME}
 	INTERFACE
 		"${CMAKE_CURRENT_LIST_DIR}/SQLiteCpp.h"
@@ -16,4 +20,16 @@ target_sources( ${PROJECT_NAME}
 		"${CMAKE_CURRENT_LIST_DIR}/Transaction.h"
 		"${CMAKE_CURRENT_LIST_DIR}/Transaction.cpp"
 		"${CMAKE_CURRENT_LIST_DIR}/VariadicBind.h"
+)
+
+target_compile_options( ${PROJECT_NAME} 
+    PUBLIC 
+        -fvisibility=hidden 
+        -fvisibility-inlines-hidden 
+        -Wl,--no-undefined 
+        -fPIC
+)
+
+target_link_libraries( ${PROJECT_NAME} 
+    ${SQLITE3_LIBRARY} 
 )

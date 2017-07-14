@@ -16,7 +16,7 @@
 
 using namespace Core;
 
-const char * Exception::Generic::what( void ) const throw()
+CORE_EXPORT const char * Exception::Generic::what( void ) const throw()
 {
 	/* TODO: Implement custom diagnostic information
 	 * See diagnostic_information.hpp
