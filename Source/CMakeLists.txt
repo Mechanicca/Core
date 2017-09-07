@@ -34,6 +34,10 @@ target_link_libraries( ${PROJECT_NAME}
     SQLiteCpp 
 	${Qt5_LIBRARIES} 
 	${Boost_LIBRARIES}
+	${OpenCascade_LIBRARIES}
+	${OGRE_LIBRARIES}
+    OgreHlmsUnlit
+    OgreHlmsPbs   
 	pthread
 	dl
 )
