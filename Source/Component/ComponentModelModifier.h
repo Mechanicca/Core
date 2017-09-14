@@ -38,6 +38,8 @@ namespace Component
 		:	public IComponentModel
 	{
 	public:
+
+	protected:
 		ComponentModelModifier( const std::shared_ptr<IComponentModel> ComponentModel )
 			:	mModifiedComponentModel( ComponentModel )
 		{}
@@ -46,6 +48,7 @@ namespace Component
 
 		virtual std::unique_ptr<TopoDS_Shape> applyModifier( const std::shared_ptr<TopoDS_Shape> ComponentShape, const std::shared_ptr<TopoDS_Shape> ModifierShape ) const = 0;
 
+	private:
 		std::future<std::unique_ptr<TopoDS_Shape>> constructModel( const std::shared_ptr<Core::ParameterContainer> Parameters ) const override final
 		{
 			/* This must be called first in order to keep proper construction flow.

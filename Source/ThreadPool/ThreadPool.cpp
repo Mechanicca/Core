@@ -11,10 +11,14 @@
 using namespace Core;
 
 CORE_EXPORT ThreadPool::ThreadPool( void )
-:	ThreadCount( std::thread::hardware_concurrency() ),
-	threadsWaiting(0),
-	terminate(false),
-	paused(false)
+#if false
+	:	ThreadCount( std::thread::hardware_concurrency() ),
+#else
+	:	ThreadCount( 6 ),
+#endif
+		threadsWaiting(0),
+		terminate(false),
+		paused(false)
 {
 	std::cout << "Starting ThreadPool running " << ThreadCount << " worker threads." << std::endl;
 

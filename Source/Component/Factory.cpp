@@ -47,9 +47,9 @@ Factory::Factory( void )
 #endif
 }
 
-std::shared_ptr<IComponent> CORE_EXPORT Factory::constructComponent( const std::shared_ptr<IComponentDesigner> ComponentDesigner, const std::shared_ptr<Core::ParameterContainer> Specification ) const
+std::unique_ptr<IComponent> CORE_EXPORT Factory::constructComponent( const std::shared_ptr<IComponentDesigner> ComponentDesigner, const std::shared_ptr<Core::ParameterContainer> Specification ) const
 {
-	return( ComponentDesigner->constructComponent( Specification ) );
+	return( std::move( ComponentDesigner->constructComponent( Specification ) ) );
 }
 
 std::shared_ptr<IComponentDesigner> Factory::getComponentDesigner( const std::string Name ) const

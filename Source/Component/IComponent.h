@@ -23,10 +23,11 @@ namespace Component
 
 		virtual const std::string & getCathegory( void ) const = 0;
 
-		virtual std::shared_ptr<TopoDS_Shape> getModel( void ) const = 0;
+		virtual void requestUpdate( void ) = 0;
+
+		virtual ~IComponent( void ) = default;
 
 	protected:
-		virtual ~IComponent( void ) = default;
 
 	private:
 

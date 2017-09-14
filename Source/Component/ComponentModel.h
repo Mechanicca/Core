@@ -31,11 +31,17 @@ namespace Component
 		:	public IComponentModel
 	{
 	public:
+
+	protected:
 		ComponentModel( void )
 		{}
 
 		virtual std::unique_ptr<TopoDS_Shape> constructComponentModel( const std::shared_ptr<Core::ParameterContainer> Parameters ) const = 0;
 
+		/** @brief Construct Model
+		 * This generic method is just used to run the constructCompoentModel in threadpool. The constructComponentModel() method must be implemented
+		 * in all the component model classes which derive this base. This layout ensures all the models are constructed in own threads.
+		 */
 		std::future<std::unique_ptr<TopoDS_Shape>> constructModel( const std::shared_ptr<Core::ParameterContainer> Parameters ) const override final
 		{
 			/* Prepare function pointer to constructModelModifier() method */
@@ -45,8 +51,6 @@ namespace Component
 			return( Core::ThreadPool::get_mutable_instance().add( f, Parameters ) );
 		}
 
-	protected:
-
 	private:
 
 	};
@@ -54,18 +58,18 @@ namespace Component
 	template<typename COMPONENT, typename... OTHER_MODIFIERS>
 	struct ComponentModelConstructor
 	{
-		std::shared_ptr<IComponentModel> operator() ( void )
+		std::unique_ptr<IComponentModel> operator() ( void )
 		{
-			return( std::make_shared<COMPONENT>() );
+			return( std::make_unique<COMPONENT>() );
 		}
 	};
 
 	template<typename COMPONENT, typename MODIFIER, typename... OTHER_MODIFIERS>
 	struct ComponentModelConstructor<COMPONENT, MODIFIER, OTHER_MODIFIERS ...>
 	{
-		std::shared_ptr<IComponentModel> operator() ( void )
+		std::unique_ptr<IComponentModel> operator() ( void )
 		{
-			return( std::make_shared<MODIFIER>( ComponentModelConstructor<COMPONENT, OTHER_MODIFIERS ...>()() ) );
+			return( std::make_unique<MODIFIER>( ComponentModelConstructor<COMPONENT, OTHER_MODIFIERS ...>()() ) );
 		}
 	};
 }

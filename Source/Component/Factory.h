@@ -55,7 +55,7 @@ namespace Component
 		 * simple component (instance of Component class) or to assembly (instance of Assembly class).
 		 * It depends on Component Designer what it creates
 		 */
-		std::shared_ptr<IComponent> CORE_EXPORT constructComponent( const std::shared_ptr<IComponentDesigner> ComponentDesigner, const std::shared_ptr<Core::ParameterContainer> Specification ) const;
+		std::unique_ptr<IComponent> CORE_EXPORT constructComponent( const std::shared_ptr<IComponentDesigner> ComponentDesigner, const std::shared_ptr<Core::ParameterContainer> Specification ) const;
 
 		std::shared_ptr<IComponentDesigner> getComponentDesigner( const std::string Name ) const;
 

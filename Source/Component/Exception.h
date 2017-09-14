@@ -31,6 +31,12 @@ namespace Component
 			struct CORE_EXPORT PluginLoadingFailed : virtual Core::Exception::Generic {};
 			struct CORE_EXPORT ComponentDesignerNotFound : virtual Core::Exception::Generic {};
 		}
+
+		namespace Design
+		{
+			struct CORE_EXPORT SpecificationIncomplete : virtual Core::Exception::Generic {};
+			struct CORE_EXPORT ModelConstructionFailed : virtual Core::Exception::Generic {};
+		}
 	}
 }
 

@@ -28,7 +28,7 @@ namespace Component
 	{
 	public:
 		/* Check whether COMPONENT_TYPE is compatible with IComponent interface */
-		static_assert( std::is_base_of<IComponent, COMPONENT_TYPE>::value, "Component designer's component type must implement IComponentDesigner interface." );
+		static_assert( std::is_base_of<IComponent, COMPONENT_TYPE>::value, "Component designer's component type must implement IComponent interface." );
 
 		ComponentDesigner( std::string Name, std::string Cathegory )
 			:	mName( Name ), mCathegory( Cathegory )
@@ -44,23 +44,22 @@ namespace Component
 			return( this->mCathegory );
 		}
 
-		const std::shared_ptr<IComponent> constructComponent( const std::shared_ptr<Core::ParameterContainer> Specification ) const override final
+		std::unique_ptr<IComponent> constructComponent( const std::shared_ptr<Core::ParameterContainer> Specification ) const override final
 		{
-			/* Instantiate the component using it's constructor */
-			std::shared_ptr<COMPONENT_TYPE> tComponent = std::make_shared<COMPONENT_TYPE>( std::move( Specification ) );
+			std::unique_ptr<COMPONENT_TYPE> tComponent = std::make_unique<COMPONENT_TYPE>( std::move( Specification ) );
 
-			/* FIXME: This is most probably very time consuming task --> should run in a separate thread? */
-			/* Once the instance is existing, run the component construction task */
-			tComponent->update();
+			/* Once the instance is existing, run the component construction task. Internally, it is run in the thread pool. */
+			tComponent->requestUpdate();
 
 			/* Return constructed component */
-			return( tComponent );
+			return( std::move( tComponent ) );
 		}
 
 	protected:
 
 	private:
 		std::string mName;
+
 		std::string mCathegory;
 	};
 }

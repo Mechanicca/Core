@@ -32,7 +32,7 @@ namespace Component
 
 		virtual const std::string & getCathegory( void ) const = 0;
 
-		virtual const std::shared_ptr<IComponent> constructComponent( const std::shared_ptr<Core::ParameterContainer> Specification ) const = 0;
+		virtual std::unique_ptr<IComponent> constructComponent( const std::shared_ptr<Core::ParameterContainer> Specification ) const = 0;
 
 	protected:
 		virtual ~IComponentDesigner( void ) = default;

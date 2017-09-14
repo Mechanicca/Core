@@ -27,7 +27,6 @@ namespace Component
 	public:
 		virtual std::future<std::unique_ptr<TopoDS_Shape>> constructModel( const std::shared_ptr<Core::ParameterContainer> Parameters ) const = 0;
 
-	protected:
 		virtual ~IComponentModel( void ) = default;
 
 	private:
